@@ -163,7 +163,7 @@ function createCssCode(preCssCode, nextCssCode, fn) {
       window.clearInterval(timeId);
       fn && fn.call();
     }
-  }, 0);
+  }, 50);
 }
 
 createCssCode('', cssCode1, function() {
