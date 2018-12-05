@@ -19,6 +19,14 @@ body {
   padding: 16px;
 }
 
+/* 旋转一个角度看看 */
+#code-wrapper {
+  perspective: 1000px;
+}
+#code {
+  transform: rotateY(10deg);
+}
+
 /* 恩，再加个呼吸效果就不玩了 */
 #code {
   animation: breath 0.8s infinite alternate-reverse;
@@ -40,21 +48,35 @@ body {
 
 /* 好了,现在可以开始了,首先空出一个位置 */
 #code-wrapper {
-  position: fixed;
-  left: 0;
   width: 50%;
   height: 100%;
+  position: fixed;
+  animation: move 3s both running;
+}
+#code {
+  transform: rotateY(-10deg);
 }
 `
 
 var cssCode2 =
-`/* 然后开始写简历 */
+`
+/* 调一下简历的颜色 */
+#resume {
+  perspective: 1000px;
+  background: #b38e8e;
+}
+/* 让简历斜一下 */
+#resume > .content {
+  transform: rotateY(10deg);
+}
 
 /* 现在开始写简历的那些内容啦 */
+
 `;
 
 var cssCode3 =
 `/* 然后使用 showdown.js 将 markdown 转换成 html */
+
 `;
 
 var markdownCode =
@@ -112,13 +134,11 @@ function createMarkdownContent(markdownContent, fn) {
     contentDom.scrollTop = contentDom.scrollHeight;
     if (n >= markdownContent.length) {
       window.clearInterval(timeId);
-      console.log('create Markdown Content over');
       fn && fn.call();
     }
   }, 100);
 }
 function convertMarkdownToHtml(markdownContent, fn) {
-  console.log('convert begin');
   let converter = new showdown.Converter();
   let html = converter.makeHtml(markdownContent);
 
@@ -130,7 +150,6 @@ function convertMarkdownToHtml(markdownContent, fn) {
   markdownContainer.replaceWith(markdownDom);
 
   fn && fn.call()
-  console.log('convert over');
 }
 
 function createCssCode(preCssCode, nextCssCode, fn) {
@@ -144,7 +163,7 @@ function createCssCode(preCssCode, nextCssCode, fn) {
       window.clearInterval(timeId);
       fn && fn.call();
     }
-  }, 50);
+  }, 0);
 }
 
 createCssCode('', cssCode1, function() {
