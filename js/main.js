@@ -53,6 +53,7 @@ body {
   position: fixed;
   animation: move 3s both running;
 }
+/* 再做一次旋转 */
 #code {
   transform: rotateY(-10deg);
 }
@@ -82,9 +83,13 @@ var cssCode3 =
 var markdownCode =
 `# 自我介绍
   我叫 蒋海涛
+
   1994 年 4 月出生
+
   XXX 学校毕业
+
   自学前端半年
+
   希望应聘前端开发岗位
 # 技能介绍
   熟悉 JavaScript CSS
